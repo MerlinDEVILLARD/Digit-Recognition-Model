@@ -1,7 +1,7 @@
 # Digit Recognition Model (DRM)
 *by Khyk*
 
-Here's my first AI project. The initial idea was to create model which will be capable of recognize a digit out of a small grayscaled image, and without torch.
+Here's my first AI project. The initial idea was to create model which will be capable of recognize a digit out of a small grayscaled image, and without any module (like `torch`).
 
 > **Note:** I had this idea after watching a educational video. Please check it to fully understand the project and to give 1Blue3Brown some credit ([Link](https://www.youtube.com/watch?v=aircAruvnKk)) (His videos are awsome)
 
