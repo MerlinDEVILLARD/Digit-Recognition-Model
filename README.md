@@ -13,4 +13,23 @@ It was very interesting for me, hope you'll enjoy this as good as me. :)
 git clone git@github.com:MerlinDEVILLARD/Digit-Recognition-Model.git
 ```
 
+2. to the directory of the cloned project:
+```sh
+cd OpenHosta
+```
+
+3. Ensure you have installed the necessary dependencies before starting.
+```sh
+pip install .
+```
+
+### Usage
+
 ### Documentation
+
+### License
+
+This project is licensed under the MIT License. This means you are free to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the software, subject to the following conditions:
+
+The text of the license below must be included in all copies or substantial portions of the software.
+See the LICENSE file for more details.
