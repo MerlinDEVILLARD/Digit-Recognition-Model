@@ -3,9 +3,9 @@ requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "DRM"
+name = "HDRM"
 version = "1.0"
-description = "Open-Source digit recognition AI model with fully-connected neural network"
+description = "Open-Source handwritten digit recognition AI model with fully-connected neural network"
 keywords = ["AI", "Neural Network"]
 authors = [
   { name="Merlin Devillard"}

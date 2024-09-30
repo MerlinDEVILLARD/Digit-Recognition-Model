@@ -1,6 +1,5 @@
 import numpy as np
 from typing import List, Tuple, Callable
-import sys
 
 class DigitRecognitionModel:
     
