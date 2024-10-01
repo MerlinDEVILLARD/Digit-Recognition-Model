@@ -15,7 +15,7 @@ git clone git@github.com:MerlinDEVILLARD/Digit-Recognition-Model.git
 
 2. to the directory of the cloned project:
 ```sh
-cd OpenHosta
+cd Digit_Recognition_Model
 ```
 
 3. Ensure you have installed the necessary dependencies before starting.
