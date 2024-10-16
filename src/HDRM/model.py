@@ -1,7 +1,7 @@
 import numpy as np
 from typing import List, Tuple, Callable
 
-class DigitRecognitionModel:
+class NeuralNetwork:
     
     def __init__(
         self, 
