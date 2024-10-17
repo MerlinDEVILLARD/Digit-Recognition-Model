@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MNIST Digit Recognition</title>
+    <style>
+        #pixelCanvas {
+            border-collapse: collapse;
+            background-color: black;
+        }
+        #pixelCanvas td {
+            width: 15px;
+            height: 15px;
+            border: 1px solid #444;
+            background-color: black;
+        }
+        #pixelCanvas td.active {
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Draw a digit (0-9)</h1>
+    <table id="pixelCanvas"></table>
+
+    <button onclick="clearCanvas()">Clear</button>
+    <button onclick="predict()">Predict</button>
+    <p id="result"></p>
+
+    <script>
+        const gridSize = 28;
+        const canvas = document.getElementById('pixelCanvas');
+        let isDrawing = false;
+        const penSize = 1;
+
+        // Create the grid
+        for (let i = 0; i < gridSize; i++) {
+            let row = canvas.insertRow();
+            for (let j = 0; j < gridSize; j++) {
+                let cell = row.insertCell();
+                cell.dataset.row = i;
+                cell.dataset.col = j;
+                cell.addEventListener('mousedown', startDrawing);
+                cell.addEventListener('mouseover', draw);
+                cell.addEventListener('mouseup', stopDrawing);
+            }
+        }
+
+        document.addEventListener('mouseup', stopDrawing);
+
+        function startDrawing(e) {
+            isDrawing = true;
+            draw(e);
+        }
+
+        function draw(e) {
+            if (!isDrawing) return;
+            const row = parseInt(e.target.dataset.row);
+            const col = parseInt(e.target.dataset.col);
+
+            for (let i = -penSize; i <= penSize; i++) {
+                for (let j = -penSize; j <= penSize; j++) {
+                    const newRow = row + i;
+                    const newCol = col + j;
+                    if (newRow >= 0 && newRow < gridSize && newCol >= 0 && newCol < gridSize) {
+                        const cell = canvas.rows[newRow].cells[newCol];
+                        cell.classList.add('active');
+                    }
+                }
+            }
+        }
+
+        function stopDrawing() {
+            isDrawing = false;
+        }
+
+        function clearCanvas() {
+            const cells = canvas.getElementsByTagName('td');
+            for (let cell of cells) {
+                cell.classList.remove('active');
+            }
+        }
+
+        function predict() {
+            const cells = canvas.getElementsByTagName('td');
+            const input = [];
+            for (let cell of cells) {
+                input.push(cell.classList.contains('active') ? 1 : 0);
+            }
+
+            fetch('/predict', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({image: input}),
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('result').textContent = `Predicted digit: ${data.prediction}`;
+            });
+        }
+    </script>
+</body>
+</html>
