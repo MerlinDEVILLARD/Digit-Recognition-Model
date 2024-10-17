@@ -1,42 +1,33 @@
 import numpy as np
 from typing import List, Tuple, Callable
+import random as r
 
 class NeuralNetwork:
     
     def __init__(
         self, 
         image_size:Tuple[int, int],
-        neuron:Callable,
-        n_hl1:int = 16, 
-        n_hl2:int = 16,
-        )->None:
-        if not isinstance(image_size, Tuple[int, int]) \
-        or not isinstance(n_hl1, int) \
-        or not isinstance(n_hl2, int) \
-        or not isinstance(neuron, Callable):
-            raise ValueError("Wrong argument's type for initialization.")
+        n_hl1:int = 128, 
+        n_hl2:int = 64,
+        epochs:int=10,
+        l_rate:float=0.001
+    )->None:
+
+        self.epochs = epochs
+        self.l_rate = l_rate 
         
         self.il_size = image_size[0] * image_size[1]
         self.ol_size = 10
         self.hl1_size = n_hl1
         self.hl2_size = n_hl2
-        self.neuron = neuron
         
-        self.input_l: List[Callable] = [self.neuron for k in range(self.il_size)]
-        self.hidden_l1: List[Callable] = [self.neuron for k in range(self.hl1_size)]
-        self.hidden_l2: List[Callable] = [self.neuron for k in range(self.hl2_size)]
-        self.output_l: List[Callable] = [self.neuron for k in range(self.ol_size)]
+        self.w1 = np.random.randn(self.hl1_size, self.il_size)  * np.sqrt(1. / self.hl1_size),
+        self.w2 = np.random.rand(self.hl2_size, self.hl1_size)
+        self.w3 = np.random.rand(self.ol_size, self.hl2_size)
         
-    def normalize(self):
-        pass
-    
-    def forward(self):
-        pass
-    
-    def train(self):
-        pass
-    
-    def save(self):
-        pass
-    
+        print(self.w1)
+        
+
+NeuralNetwork((28, 28))        
+
     
