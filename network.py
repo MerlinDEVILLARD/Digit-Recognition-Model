@@ -52,7 +52,7 @@ class Network:
             losses.append(err)
             # calculate average error on all samples
             err /= x_train_len
-            print('epoch %d/%d   error=%f' % (i+1, epochs, err))
+            print('epoch %d/%d   error=%f' % (i+1, epochs, err), end='\r')
 
     def save_weights(self, filename):
         weights = {}
