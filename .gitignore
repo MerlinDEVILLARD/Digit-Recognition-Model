@@ -166,4 +166,4 @@ cython_debug/
 
 my_test
 .idea
-
+.vscode
